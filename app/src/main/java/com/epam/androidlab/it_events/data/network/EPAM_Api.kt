@@ -1,6 +1,7 @@
-package com.epam.androidlab.it_events
+package com.epam.androidlab.it_events.data.network
 
-import com.epam.androidlab.it_events.models.EPAM_Events_Response
+import com.epam.androidlab.it_events.data.Extras
+import com.epam.androidlab.it_events.data.models.EPAM_Events_Response
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
@@ -11,7 +12,7 @@ class EPAM_Api {
 
     init {
         val retrofit = Retrofit.Builder()
-                .baseUrl(Constants.EPAM_BASE_URL)
+                .baseUrl(Extras.EPAM_BASE_URL)
                 .addConverterFactory(MoshiConverterFactory.create())
                 .build()
         epamRetrofitService = retrofit.create(EPAM_Retrofit_Service::class.java)

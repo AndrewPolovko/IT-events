@@ -1,4 +1,4 @@
-package com.epam.androidlab.it_events.models
+package com.epam.androidlab.it_events.data.models
 
 import com.squareup.moshi.Json
 
@@ -19,7 +19,7 @@ class EPAM_Event_Response(
         @Json(name = "is_extra_block")
         val isExtraBlock: Boolean,
         @Json(name = "event_image")
-        val eventImage: String,
+        var eventImage: String,
         @Json(name = "event_url")
         val eventUrl: String,
         @Json(name = "date_with_location")

@@ -1,34 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="200dp"
-    android:layout_margin="5dp">
+    android:layout_height="@dimen/recycler_view_item_height"
+    android:paddingBottom="@dimen/recycler_view_item_padding_top"
+    android:paddingTop="@dimen/recycler_view_item_padding_bottom">
 
-    <ImageView
-        android:id="@+id/event_image"
+    <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scaleType="centerCrop"
-        tools:background="@android:color/holo_green_dark" />
+        app:cardUseCompatPadding="true">
 
-    <TextView
-        android:id="@+id/event_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:textColor="@android:color/white"
-        android:textSize="25sp"
-        tools:text="EPAM Java Summer Contest" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/event_date_with_location"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/event_title"
-        android:layout_margin="10dp"
-        android:textColor="@android:color/white"
-        android:textSize="18sp"
-        tools:text="26 June - 17 July 2017" />
+            <ImageView
+                android:id="@+id/event_image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                tools:background="@android:color/holo_green_dark" />
 
-</RelativeLayout>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@color/cardViewShade" />
+
+            <TextView
+                android:id="@+id/event_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:textColor="@android:color/white"
+                android:textSize="25sp"
+                tools:text="EPAM Java Summer Contest" />
+
+            <TextView
+                android:id="@+id/event_date_with_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/event_title"
+                android:layout_margin="10dp"
+                android:textColor="@android:color/white"
+                android:textSize="18sp"
+                tools:text="26 June - 17 July 2017" />
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+</FrameLayout>

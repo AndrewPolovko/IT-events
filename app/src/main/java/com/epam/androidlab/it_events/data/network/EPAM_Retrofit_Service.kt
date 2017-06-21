@@ -1,6 +1,6 @@
-package com.epam.androidlab.it_events
+package com.epam.androidlab.it_events.data.network
 
-import com.epam.androidlab.it_events.models.EPAM_Events_Response
+import com.epam.androidlab.it_events.data.models.EPAM_Events_Response
 import retrofit2.Call
 import retrofit2.http.GET
 
