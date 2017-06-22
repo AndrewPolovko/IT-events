@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
+import com.epam.androidlab.it_events.Extras
 import com.epam.androidlab.it_events.R
 import com.epam.androidlab.it_events.data.models.EPAM_Events_Response
 

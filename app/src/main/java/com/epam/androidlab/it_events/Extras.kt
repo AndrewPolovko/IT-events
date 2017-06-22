@@ -1,4 +1,4 @@
-package com.epam.androidlab.it_events.data
+package com.epam.androidlab.it_events
 
 class Extras {
     companion object {
