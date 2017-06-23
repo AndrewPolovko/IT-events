@@ -31,7 +31,7 @@ class EPAM_Event_Response(
         @Json(name = "reg_status")
         val regStatus: String,
         @Json(name = "topics")
-        val topics: String,
+        var topics: String,
         @Json(name = "participants")
         val participants: Int,
         @Json(name = "speakers_type")

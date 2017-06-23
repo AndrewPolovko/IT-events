@@ -23,16 +23,16 @@ class EPAM_Events_Adapter(var eventsList: EPAM_Events_Response) : RecyclerView.A
     }
 
     inner class EPAM_Event_Holder(var view: View) : RecyclerView.ViewHolder(view) {
+        val eventImage = view.findViewById(R.id.event_image) as ImageView
         val title = view.findViewById(R.id.event_title) as TextView
         val dateWithLocation = view.findViewById(R.id.event_date_with_location) as TextView
-        val eventImage = view.findViewById(R.id.event_image) as ImageView
+        val topics = view.findViewById(R.id.event_topics) as TextView
+        val regStatus = view.findViewById(R.id.reg_status) as TextView
     }
 
     override fun onBindViewHolder(holder: EPAM_Event_Holder, position: Int) {
         val context = holder.view.context
         val event = eventsList.events[position]
-        holder.title.text = event.title
-        holder.dateWithLocation.text = event.dateWithLocation
         Glide
                 .with(holder.view.context)
                 .load(event.eventImage)
@@ -40,6 +40,11 @@ class EPAM_Events_Adapter(var eventsList: EPAM_Events_Response) : RecyclerView.A
                 .error(R.drawable.ic_error_black_24dp)
                 .dontAnimate()
                 .into(holder.eventImage)
+
+        holder.title.text = event.title
+        holder.dateWithLocation.text = event.dateWithLocation
+        holder.topics.text = event.topics
+        holder.regStatus.text = event.regStatus
 
         holder.view.setOnClickListener {
             val builder = CustomTabsIntent.Builder()

@@ -11,14 +11,14 @@ import com.epam.androidlab.it_events.data.EPAM_Events_Adapter
 import com.epam.androidlab.it_events.data.EPAM_Events_Manager
 import com.epam.androidlab.it_events.data.models.EPAM_Events_Response
 
-class EPAM_Fragment : BazeFragment() {
+class EPAM_Fragment : BazeEventsFragment() {
     lateinit var rootView: View
     lateinit var mRecyclerView: RecyclerView
     lateinit var eventsAdapter: EPAM_Events_Adapter
     lateinit var eventsManager: EPAM_Events_Manager
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        rootView = inflater.inflate(R.layout.epam_fragment, container)
+        rootView = inflater.inflate(R.layout.epam_fragment, null)
         return rootView
     }
 

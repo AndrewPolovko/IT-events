@@ -8,17 +8,24 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 
 
 class EPAM_Api {
-    private val epamRetrofitService: EPAM_Retrofit_Service
+    private val mEPAM_Retrofit_Service: EPAM_Retrofit_Service
 
     init {
         val retrofit = Retrofit.Builder()
                 .baseUrl(Extras.EPAM_BASE_URL)
                 .addConverterFactory(MoshiConverterFactory.create())
                 .build()
-        epamRetrofitService = retrofit.create(EPAM_Retrofit_Service::class.java)
+        mEPAM_Retrofit_Service = retrofit.create(EPAM_Retrofit_Service::class.java)
     }
 
-    fun getEvents(): Call<EPAM_Events_Response> {
-        return epamRetrofitService.getEvents()
+    fun getEvents(isUpcoming: Boolean,
+                  selectedCount: Int): Call<EPAM_Events_Response> {
+        return mEPAM_Retrofit_Service.getEvents(isUpcoming, selectedCount)
+    }
+
+    fun searchEvents(search: String,
+                     isUpcoming: Boolean,
+                     selectedCount: Int): Call<EPAM_Events_Response> {
+        return mEPAM_Retrofit_Service.searchEvents(search, selectedCount, isUpcoming)
     }
 }
