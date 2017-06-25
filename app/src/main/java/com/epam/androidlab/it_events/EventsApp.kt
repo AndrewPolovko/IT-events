@@ -7,7 +7,7 @@ import android.support.v7.app.AppCompatActivity
 import com.epam.androidlab.it_events.data.network.EpamApi
 import com.squareup.leakcanary.LeakCanary
 
-class App : Application() {
+class EventsApp : Application() {
     companion object {
         lateinit var mAppContext: Context
         val mEpamApi: EpamApi by lazy { EpamApi() }

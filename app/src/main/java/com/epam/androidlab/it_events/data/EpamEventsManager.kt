@@ -1,6 +1,6 @@
 package com.epam.androidlab.it_events.data
 
-import com.epam.androidlab.it_events.App
+import com.epam.androidlab.it_events.EventsApp
 import com.epam.androidlab.it_events.data.models.EpamEventsResponse
 import com.epam.androidlab.it_events.data.network.EpamApi
 import com.epam.androidlab.it_events.util.EpamUtil
@@ -9,12 +9,12 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class EpamEventsManager {
-    private val mEpamApi: EpamApi = App.mEpamApi
+    private val mEpamApi: EpamApi = EventsApp.mEpamApi
     fun getEvents(callback: EpamEventsCallback,
                   isUpcoming: Boolean = true,
                   selectedCount: Int = 0) {
 
-        if (App.isNetworkAvailable()) {
+        if (EventsApp.isNetworkAvailable()) {
             val call = mEpamApi.getEvents(isUpcoming, selectedCount)
             val response = getApiResponse(call, callback)
         } else {
@@ -27,7 +27,7 @@ class EpamEventsManager {
                      isUpcoming: Boolean = true,
                      selectedCount: Int = 0) {
 
-        if (App.isNetworkAvailable()) {
+        if (EventsApp.isNetworkAvailable()) {
             val call = mEpamApi.searchEvents(searchString, isUpcoming, selectedCount)
             val response = getApiResponse(call, callback)
         } else {
