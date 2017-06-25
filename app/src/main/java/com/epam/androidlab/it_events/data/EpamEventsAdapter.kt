@@ -12,17 +12,17 @@ import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.epam.androidlab.it_events.Extras
 import com.epam.androidlab.it_events.R
-import com.epam.androidlab.it_events.data.models.EPAM_Events_Response
+import com.epam.androidlab.it_events.data.models.EpamEventsResponse
 
 
-class EPAM_Events_Adapter(var eventsList: EPAM_Events_Response) : RecyclerView.Adapter<EPAM_Events_Adapter.EPAM_Event_Holder>() {
+class EpamEventsAdapter(var eventsList: EpamEventsResponse) : RecyclerView.Adapter<EpamEventsAdapter.EpamEventHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EPAM_Event_Holder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EpamEventHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.epam_event_recycler_view_item, parent, false)
-        return EPAM_Event_Holder(view)
+        return EpamEventHolder(view)
     }
 
-    inner class EPAM_Event_Holder(var view: View) : RecyclerView.ViewHolder(view) {
+    inner class EpamEventHolder(var view: View) : RecyclerView.ViewHolder(view) {
         val eventImage = view.findViewById(R.id.event_image) as ImageView
         val title = view.findViewById(R.id.event_title) as TextView
         val dateWithLocation = view.findViewById(R.id.event_date_with_location) as TextView
@@ -30,7 +30,7 @@ class EPAM_Events_Adapter(var eventsList: EPAM_Events_Response) : RecyclerView.A
         val regStatus = view.findViewById(R.id.reg_status) as TextView
     }
 
-    override fun onBindViewHolder(holder: EPAM_Event_Holder, position: Int) {
+    override fun onBindViewHolder(holder: EpamEventHolder, position: Int) {
         val context = holder.view.context
         val event = eventsList.events[position]
         Glide

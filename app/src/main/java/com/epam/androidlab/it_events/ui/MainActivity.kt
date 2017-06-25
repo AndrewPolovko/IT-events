@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
     fun show_EPAM_fragment() {
         supportFragmentManager
                 .beginTransaction()
-                .replace(R.id.my_fragment_container, EPAM_Fragment())
+                .replace(R.id.my_fragment_container, EpamFragment())
                 .commit()
     }
 }

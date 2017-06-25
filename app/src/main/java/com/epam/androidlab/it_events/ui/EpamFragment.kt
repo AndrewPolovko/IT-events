@@ -7,15 +7,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.epam.androidlab.it_events.R
-import com.epam.androidlab.it_events.data.EPAM_Events_Adapter
-import com.epam.androidlab.it_events.data.EPAM_Events_Manager
-import com.epam.androidlab.it_events.data.models.EPAM_Events_Response
+import com.epam.androidlab.it_events.data.EpamEventsAdapter
+import com.epam.androidlab.it_events.data.EpamEventsManager
+import com.epam.androidlab.it_events.data.models.EpamEventsResponse
 
-class EPAM_Fragment : BazeEventsFragment() {
+class EpamFragment : BazeEventsFragment() {
     lateinit var rootView: View
     lateinit var mRecyclerView: RecyclerView
-    lateinit var eventsAdapter: EPAM_Events_Adapter
-    lateinit var eventsManager: EPAM_Events_Manager
+    lateinit var eventsAdapter: EpamEventsAdapter
+    lateinit var eventsManager: EpamEventsManager
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         rootView = inflater.inflate(R.layout.epam_fragment, null)
@@ -26,9 +26,9 @@ class EPAM_Fragment : BazeEventsFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         mRecyclerView = rootView.findViewById(R.id.recycler_view) as RecyclerView
-        eventsManager = EPAM_Events_Manager()
-        eventsManager.getEvents(object : EPAM_Events_Manager.EPAM_Events_Callback {
-            override fun onSuccess(events: EPAM_Events_Response?) {
+        eventsManager = EpamEventsManager()
+        eventsManager.getEvents(object : EpamEventsManager.EpamEventsCallback {
+            override fun onSuccess(events: EpamEventsResponse?) {
                 events?.let {
                     showEvents(events)
                 }
@@ -41,7 +41,7 @@ class EPAM_Fragment : BazeEventsFragment() {
     }
 
     override fun <T> showEvents(events: T) {
-        eventsAdapter = EPAM_Events_Adapter(events as EPAM_Events_Response)
+        eventsAdapter = EpamEventsAdapter(events as EpamEventsResponse)
         mRecyclerView.adapter = eventsAdapter
         mRecyclerView.layoutManager = LinearLayoutManager(rootView.context)
     }
