@@ -12,6 +12,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
         fragmentContainer = findViewById(R.id.my_fragment_container) as FrameLayout
         if (savedInstanceState == null)
             show_EPAM_fragment()

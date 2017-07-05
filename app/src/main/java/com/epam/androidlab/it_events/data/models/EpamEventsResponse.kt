@@ -2,7 +2,7 @@ package com.epam.androidlab.it_events.data.models
 
 import com.squareup.moshi.Json
 
-class EpamEventsResponse(
+open class EpamEventsResponse(
         @Json(name = "items_count")
         val itemsCount: Int,
         @Json(name = "selected_count")
@@ -13,7 +13,7 @@ class EpamEventsResponse(
         val events: List<EpamEventResponse>
 )
 
-class EpamEventResponse(
+open class EpamEventResponse(
         @Json(name = "block_class")
         val blockClass: String,
         @Json(name = "is_extra_block")

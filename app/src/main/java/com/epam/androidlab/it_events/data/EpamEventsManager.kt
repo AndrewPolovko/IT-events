@@ -4,9 +4,9 @@ import com.epam.androidlab.it_events.EventsApp
 import com.epam.androidlab.it_events.data.models.EpamEventsResponse
 import com.epam.androidlab.it_events.data.network.EpamApi
 import com.epam.androidlab.it_events.util.EpamUtil
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import rx.Observable
+import rx.android.schedulers.AndroidSchedulers
+import rx.schedulers.Schedulers
 
 class EpamEventsManager {
     private val mEpamApi: EpamApi = EventsApp.mEpamApi
@@ -14,12 +14,11 @@ class EpamEventsManager {
                   isUpcoming: Boolean = true,
                   selectedCount: Int = 0) {
 
-        if (EventsApp.isNetworkAvailable()) {
-            val call = mEpamApi.getEvents(isUpcoming, selectedCount)
-            val response = getApiResponse(call, callback)
-        } else {
-            callback.onFail(Throwable("No network access"))
+        if (!networkIsAvailable(callback)) {
+            return
         }
+        val observable = mEpamApi.getEvents(isUpcoming, selectedCount)
+        getApiResponse(observable, callback)
     }
 
     fun searchEvents(searchString: String,
@@ -27,31 +26,37 @@ class EpamEventsManager {
                      isUpcoming: Boolean = true,
                      selectedCount: Int = 0) {
 
-        if (EventsApp.isNetworkAvailable()) {
-            val call = mEpamApi.searchEvents(searchString, isUpcoming, selectedCount)
-            val response = getApiResponse(call, callback)
-        } else {
-            callback.onFail(Throwable("No network access"))
+        if (!networkIsAvailable(callback)) {
+            return
         }
+        val observable = mEpamApi.searchEvents(searchString, isUpcoming, selectedCount)
+        getApiResponse(observable, callback)
     }
 
-    private fun getApiResponse(call: Call<EpamEventsResponse>, callback: EpamEventsCallback) {
-        call.enqueue(object : Callback<EpamEventsResponse> {
-            override fun onFailure(call: Call<EpamEventsResponse>, t: Throwable) {
-                callback.onFail(t)
-            }
+    fun networkIsAvailable(callback: EpamEventsCallback): Boolean {
+        if (EventsApp.isNetworkAvailable()) {
+            return true
+        } else {
+            callback.onFail(Throwable("No network access"))
+            return false
+        }
 
-            override fun onResponse(call: Call<EpamEventsResponse>, response: Response<EpamEventsResponse>) {
-                if (response.isSuccessful) {
-                    val events = response.body()
-                    callback.onSuccess(events)
-                    if (events != null) {
-                        EpamUtil.fixImageLinks(events)
-                        EpamUtil.addSpacesToTopics(events)
-                    }
-                }
-            }
-        })
+    }
+
+    private fun getApiResponse(observable: Observable<EpamEventsResponse>, callback: EpamEventsCallback) {
+        observable
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        { events ->
+                            EpamUtil.fixImageLinks(events)
+                            EpamUtil.addSpacesToEventsTopics(events)
+                            callback.onSuccess(events)
+                        },
+                        { error ->
+                            callback.onFail(error)
+                        }
+                )
     }
 
     interface EpamEventsCallback {
