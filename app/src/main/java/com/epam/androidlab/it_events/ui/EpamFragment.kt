@@ -25,7 +25,7 @@ class EpamFragment : BazeEventsFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        mRecyclerView = rootView.findViewById(R.id.recycler_view) as RecyclerView
+        mRecyclerView = rootView.findViewById(R.id.recycler_view)!!
         eventsManager = EpamEventsManager()
         eventsManager.getEvents(object : EpamEventsManager.EpamEventsCallback {
             override fun onSuccess(events: EpamEventsResponse?) {

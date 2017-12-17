@@ -12,12 +12,12 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        fragmentContainer = findViewById(R.id.my_fragment_container) as FrameLayout
+        fragmentContainer = findViewById(R.id.my_fragment_container)!!
         if (savedInstanceState == null)
-            show_EPAM_fragment()
+            showEpamFragment()
     }
 
-    fun show_EPAM_fragment() {
+    private fun showEpamFragment() {
         supportFragmentManager
                 .beginTransaction()
                 .replace(R.id.my_fragment_container, EpamFragment())

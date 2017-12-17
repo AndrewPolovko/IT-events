@@ -5,7 +5,6 @@ import android.content.Context
 import android.net.ConnectivityManager
 import android.support.v7.app.AppCompatActivity
 import com.epam.androidlab.it_events.data.network.EpamApi
-import com.squareup.leakcanary.LeakCanary
 
 class EventsApp : Application() {
     companion object {
@@ -22,9 +21,5 @@ class EventsApp : Application() {
     override fun onCreate() {
         super.onCreate()
         mAppContext = this
-        if (LeakCanary.isInAnalyzerProcess(this)) {
-            return
-        }
-        LeakCanary.install(this)
     }
 }

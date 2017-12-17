@@ -23,11 +23,11 @@ class EpamEventsAdapter(var eventsList: EpamEventsResponse) : RecyclerView.Adapt
     }
 
     inner class EpamEventHolder(var view: View) : RecyclerView.ViewHolder(view) {
-        val eventImage = view.findViewById(R.id.event_image) as ImageView
-        val title = view.findViewById(R.id.event_title) as TextView
-        val dateWithLocation = view.findViewById(R.id.event_date_with_location) as TextView
-        val topics = view.findViewById(R.id.event_topics) as TextView
-        val regStatus = view.findViewById(R.id.reg_status) as TextView
+        val eventImage = view.findViewById<ImageView>(R.id.event_image)!!
+        val title = view.findViewById<TextView>(R.id.event_title)!!
+        val dateWithLocation = view.findViewById<TextView>(R.id.event_date_with_location)!!
+        val topics = view.findViewById<TextView>(R.id.event_topics)!!
+        val regStatus = view.findViewById<TextView>(R.id.reg_status)!!
     }
 
     override fun onBindViewHolder(holder: EpamEventHolder, position: Int) {
@@ -60,7 +60,4 @@ class EpamEventsAdapter(var eventsList: EpamEventsResponse) : RecyclerView.Adapt
         return eventsList.events.size
     }
 
-    override fun getItemViewType(position: Int): Int {
-        return super.getItemViewType(position)
-    }
 }
